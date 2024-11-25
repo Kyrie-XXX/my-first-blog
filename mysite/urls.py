@@ -18,8 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.http import HttpResponseRedirect
 
+# Cambiar la URL de "Ver sitio" en el admin
+admin.site.site_url = '/blog/'  # Ahora "Ver sitio" redirige al blog
+
 urlpatterns = [
-    path('', lambda request: HttpResponseRedirect('/admin/')),  # Redirige a /admin/
-    path('admin/', admin.site.urls),
-    path('blog/', include('blog.urls')),  # Si quieres mantener las rutas del blog disponibles
+    path('', lambda request: HttpResponseRedirect('/admin/')),  # Redirige la raíz al admin
+    path('admin/', admin.site.urls),  # URL del panel de administración
+    path('blog/', include('blog.urls')),  # URLs del blog
 ]
